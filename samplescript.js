@@ -93,7 +93,6 @@ async function getWeather() {
             weatherCondition = "🌤️ Unknown Weather";
         }
 
-        // Step 4: Display weather
         let output = `
             <h2>📍 ${location.name}, ${location.country}</h2>
 
