@@ -31,10 +31,8 @@ async function getWeather() {
 
         let weatherData = await weatherResponse.json();
 
-        // Get current weather
         let current = weatherData.current;
 
-        // Step 3: Convert weather code into condition
         let weatherCondition;
 
         if (current.weather_code === 0) {
