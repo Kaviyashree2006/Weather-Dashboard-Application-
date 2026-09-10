@@ -1,16 +1,10 @@
 async function getWeather() {
 
     try {
-
-        // Get city name from input
         let city = document.getElementById("city").value;
-
-        // Check empty input
         if (city.trim() === "") {
             throw new Error("Please enter a city name");
         }
-
-        // Step 1: Find the city
         let locationResponse = await fetch(
             `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&format=json`
         );
@@ -21,15 +15,12 @@ async function getWeather() {
 
         let locationData = await locationResponse.json();
 
-        // Check if city exists
         if (!locationData.results || locationData.results.length === 0) {
             throw new Error("City not found");
         }
 
-        // Get city details
         let location = locationData.results[0];
 
-        // Step 2: Get weather using latitude and longitude
         let weatherResponse = await fetch(
             `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`
         );
